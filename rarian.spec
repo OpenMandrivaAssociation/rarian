@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.5.4
-%define release %mkrel 3
+%define release %mkrel 4
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -76,11 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 fi
 %_bindir/rarian-sk-rebuild > /dev/null || true
 
-%postun
-if [ "$1" = "0" ]; then
+#%postun
+#if [ "$1" = "0" ]; then
   # rarian is being removed, not upgraded.  
   # TODO: remove /usr/share/help ?
-fi
+#fi
 
 %post -n %libname -p /sbin/ldconfig
 %postun -n %libname -p /sbin/ldconfig
