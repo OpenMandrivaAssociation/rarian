@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.5.4
-%define release %mkrel 4
+%define release %mkrel 5
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -10,6 +10,8 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: %{name}-%{version}.tar.bz2
+# gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
+Patch: rarian-0.5.4-mv.patch
 License: GPL
 Group: Publishing
 Url: http://www.gnome.org
@@ -56,6 +58,7 @@ far as my testing indicates)
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 %configure2_5x --disable-skdb-update --localstatedir=/var
