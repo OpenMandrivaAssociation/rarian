@@ -40,7 +40,7 @@ far as my testing indicates)
 
 %package -n %libnamedev
 Group: Development/C
-Summary: Rarian cataloging system library
+Summary: Rarian cataloging system - development files
 Requires: %libname = %version
 Provides: %name-devel = %version-%release
 Provides: lib%name-devel = %version-%release
