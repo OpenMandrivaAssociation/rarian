@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.5.4
-%define release %mkrel 2
+%define release %mkrel 3
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -58,7 +58,7 @@ far as my testing indicates)
 %setup -q
 
 %build
-%configure2_5x --disable-skdb-update
+%configure2_5x --disable-skdb-update --localstatedir=/var
 %make
 
 %install
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
   if [ "$1" = "1" ]; then
 %_bindir/rarian-sk-update
 fi
-%_bindir/rarian-sk-rebuild -q -p /var/lib/rarian || true
+%_bindir/rarian-sk-rebuild > /dev/null || true
 
 %postun
 if [ "$1" = "0" ]; then
