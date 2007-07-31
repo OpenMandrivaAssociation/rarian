@@ -65,6 +65,7 @@ far as my testing indicates)
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std localstatedir=%buildroot/var
 mkdir -p %buildroot/var/lib/rarian
+touch %buildroot/var/lib/rarian/rarian-update-mtimes
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -78,7 +79,7 @@ fi
 %postun
 if [ "$1" = "0" ]; then
   # rarian is being removed, not upgraded.  
-  rm -rf /var/lib/rarian
+  # TODO: remove /usr/share/help ?
 fi
 
 %post -n %libname -p /sbin/ldconfig
@@ -92,7 +93,8 @@ fi
 %dir %_datadir/help/
 %_datadir/help/rarian.document
 %_datadir/librarian
-/var/lib/rarian
+%dir /var/lib/rarian
+%ghost /var/lib/rarian/rarian-update-mtimes
 
 %files -n %libname
 %defattr(-,root,root)
