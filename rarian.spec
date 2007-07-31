@@ -76,11 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 fi
 %_bindir/rarian-sk-rebuild > /dev/null || true
 
-#%postun
-#if [ "$1" = "0" ]; then
+%postun
+if [ "$1" = "0" ]; then
   # rarian is being removed, not upgraded.  
-  # TODO: remove /usr/share/help ?
-#fi
+  rm -f %_datadir/help/*.document
+fi
 
 %post -n %libname -p /sbin/ldconfig
 %postun -n %libname -p /sbin/ldconfig
