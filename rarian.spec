@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.5.6
-%define release %mkrel 2
+%define release %mkrel 3
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -14,6 +14,8 @@ Source0: %{name}-%{version}.tar.bz2
 Source1: scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
 Patch: rarian-0.5.4-mv.patch
+#gw https://bugs.freedesktop.org/show_bug.cgi?id=11799
+Patch1: rarian-21-fix-crash.patch
 License: GPL
 Group: Publishing
 Url: http://www.gnome.org
@@ -63,6 +65,7 @@ far as my testing indicates)
 %prep
 %setup -q
 %patch -p1
+%patch1 -p1
 
 %build
 %configure2_5x --disable-skdb-update --localstatedir=/var
