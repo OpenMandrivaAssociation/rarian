@@ -13,7 +13,8 @@ Release: %{release}
 Source0: %{name}-%{version}.tar.bz2
 Source1: scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
-Patch: rarian-0.5.4-mv.patch
+Patch0: rarian-0.5.4-mv.patch
+Patch1:	rarian-0.5.8-lzma-support.patch
 License: GPL
 Group: Publishing
 Url: http://www.gnome.org
@@ -62,7 +63,8 @@ far as my testing indicates)
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure2_5x --disable-skdb-update --localstatedir=/var
