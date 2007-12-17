@@ -19,7 +19,6 @@ Patch1:	rarian-0.5.8-lzma-support.patch
 License: GPL
 Group: Publishing
 Url: http://www.gnome.org
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides: scrollkeeper = %version-%release
 Obsoletes: scrollkeeper
 Requires(post): libxml2-utils
