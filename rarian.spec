@@ -1,5 +1,5 @@
 %define name rarian
-%define version 0.7.0
+%define version 0.7.1
 %define release %mkrel 1
 %define major 0
 %define libname %mklibname %name %major
@@ -14,8 +14,6 @@ Source0: %{name}-%{version}.tar.bz2
 Source1: scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
 Patch0: rarian-0.5.4-mv.patch
-# (perovind) add support for LZMA (fd.o bug #13255)
-Patch1:	rarian-0.5.8-lzma-support.patch
 License: GPL
 Group: Publishing
 Url: http://www.gnome.org
@@ -65,7 +63,6 @@ far as my testing indicates)
 %prep
 %setup -q
 %patch0 -p1 -b .mv
-%patch1 -p1 -b .lzma
 
 %build
 %configure2_5x --disable-skdb-update --localstatedir=/var
