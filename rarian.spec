@@ -10,13 +10,13 @@ Summary: Rarian is a cataloging system for documentation on open systems
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.bz2
+Source0: http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1: scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
 Patch0: rarian-0.5.4-mv.patch
-License: GPL
+License: GPLv2+
 Group: Publishing
-Url: http://www.gnome.org
+Url: http://rarian.freedesktop.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides: scrollkeeper = %version-%release
 Obsoletes: scrollkeeper
