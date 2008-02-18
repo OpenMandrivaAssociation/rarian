@@ -6,7 +6,7 @@
 %define libnamedev %mklibname -d %name
 %define xmlcatalog      %{_sysconfdir}/xml/catalog
 
-Summary: Rarian is a cataloging system for documentation on open systems
+Summary: Cataloging system for documentation on open systems
 Name: %{name}
 Version: %{version}
 Release: %{release}
