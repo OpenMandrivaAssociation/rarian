@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.7.1
-%define release %mkrel 2
+%define release %mkrel 3
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -20,7 +20,7 @@ Url: http://rarian.freedesktop.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides: scrollkeeper = %version-%release
 Obsoletes: scrollkeeper
-Requires(post): libxml2-utils sgml-common
+Requires(post): libxml2-utils sgml-common getopt
 Requires(preun): libxml2-utils sgml-common
 
 
