@@ -20,8 +20,8 @@ Url: http://rarian.freedesktop.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides: scrollkeeper = %version-%release
 Obsoletes: scrollkeeper
-Requires(post): libxml2-utils
-Requires(preun): libxml2-utils
+Requires(post): libxml2-utils sgml-common
+Requires(preun): libxml2-utils sgml-common
 
 
 %description
