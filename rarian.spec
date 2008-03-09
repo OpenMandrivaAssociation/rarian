@@ -1,6 +1,6 @@
 %define name rarian
-%define version 0.7.1
-%define release %mkrel 4
+%define version 0.8.0
+%define release %mkrel 1
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
