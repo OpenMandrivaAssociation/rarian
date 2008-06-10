@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.8.0
-%define release %mkrel 1
+%define release %mkrel 2
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -75,6 +75,19 @@ mkdir -p %buildroot/var/lib/rarian
 touch %buildroot/var/lib/rarian/rarian-update-mtimes
 install -D -m 644 %SOURCE1 %buildroot%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 
+# automatic ldconfig cache update on rpm installs/removals
+# (see http://wiki.mandriva.com/en/Rpm_filetriggers)
+install -d %buildroot%{_var}/lib/rpm/filetriggers
+cat > %buildroot%{_var}/lib/rpm/filetriggers/rarian.filter << EOF
+^./usr/share/omf/.*\.omf$
+EOF
+cat > %buildroot%{_var}/lib/rpm/filetriggers/rarian.script << EOF
+#!/bin/sh
+/usr/bin/scrollkeeper-update -q
+EOF
+chmod 755 %buildroot%{_var}/lib/rpm/filetriggers/rarian.script
+
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -125,6 +138,7 @@ fi
 %{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 %dir /var/lib/rarian
 %ghost /var/lib/rarian/rarian-update-mtimes
+%{_var}/lib/rpm/filetriggers/rarian.*
 
 %files -n %libname
 %defattr(-,root,root)
