@@ -75,7 +75,7 @@ mkdir -p %buildroot/var/lib/rarian
 touch %buildroot/var/lib/rarian/rarian-update-mtimes
 install -D -m 644 %SOURCE1 %buildroot%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 
-# automatic ldconfig cache update on rpm installs/removals
+# automatic cache update on rpm installs/removals
 # (see http://wiki.mandriva.com/en/Rpm_filetriggers)
 install -d %buildroot%{_var}/lib/rpm/filetriggers
 cat > %buildroot%{_var}/lib/rpm/filetriggers/rarian.filter << EOF
