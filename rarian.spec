@@ -1,6 +1,6 @@
 %define name rarian
 %define version 0.8.1
-%define release %mkrel 1
+%define release %mkrel 2
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -29,8 +29,7 @@ Rarian is a cataloging system for the installed documentation.
 
 Rarian is designed to be a replacement for scrollkeeper.  It is
 currently undergoing heavy development.  As of writing, rarian can be
-installed in place of scrollkeeper and everything will work okay (as
-far as my testing indicates)
+installed in place of scrollkeeper and everything will work okay.
 
 %package -n %libname
 Group:System/Libraries
@@ -41,8 +40,7 @@ Rarian is a cataloging system for the installed documentation.
 
 Rarian is designed to be a replacement for scrollkeeper.  It is
 currently undergoing heavy development.  As of writing, rarian can be
-installed in place of scrollkeeper and everything will work okay (as
-far as my testing indicates)
+installed in place of scrollkeeper and everything will work okay.
 
 %package -n %libnamedev
 Group: Development/C
@@ -57,8 +55,7 @@ Rarian is a cataloging system for the installed documentation.
 
 Rarian is designed to be a replacement for scrollkeeper.  It is
 currently undergoing heavy development.  As of writing, rarian can be
-installed in place of scrollkeeper and everything will work okay (as
-far as my testing indicates)
+installed in place of scrollkeeper and everything will work okay.
 
 %prep
 %setup -q
