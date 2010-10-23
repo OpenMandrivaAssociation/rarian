@@ -1,6 +1,3 @@
-%define name rarian
-%define version 0.8.1
-%define release %mkrel 5
 %define major 0
 %define libname %mklibname %name %major
 %define libnamedev %mklibname -d %name
@@ -9,11 +6,12 @@
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
 Version:	0.8.1
-Release:	%mkrel 5
+Release:	%mkrel 6
 Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1:	scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
 Patch0:		rarian-0.5.4-mv.patch
+Patch1:		rarian-0.8.1-xz-support.patch
 License:	GPLv2+
 Group:		Publishing
 Url:		http://rarian.freedesktop.org/
@@ -59,7 +57,8 @@ installed in place of scrollkeeper and everything will work okay.
 
 %prep
 %setup -q
-%patch0 -p1 -b .mv
+%patch0 -p1 -b .mv~
+%patch1 -p1 -b .xz~
 
 %build
 %configure2_5x --disable-skdb-update --localstatedir=/var
