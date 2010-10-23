@@ -6,21 +6,21 @@
 %define libnamedev %mklibname -d %name
 %define xmlcatalog      %{_sysconfdir}/xml/catalog
 
-Summary: Cataloging system for documentation on open systems
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
-Source1: scrollkeeper-omf.dtd
+Summary:	Cataloging system for documentation on open systems
+Name:		rarian
+Version:	0.8.1
+Release:	%mkrel 5
+Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
+Source1:	scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
-Patch0: rarian-0.5.4-mv.patch
-License: GPLv2+
-Group: Publishing
-Url: http://rarian.freedesktop.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Provides: scrollkeeper = %version-%release
-Obsoletes: scrollkeeper
-Requires(post): libxml2-utils sgml-common util-linux-ng
+Patch0:		rarian-0.5.4-mv.patch
+License:	GPLv2+
+Group:		Publishing
+Url:		http://rarian.freedesktop.org/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Provides:	scrollkeeper = %version-%release
+Obsoletes:	scrollkeeper
+Requires(post):	libxml2-utils sgml-common util-linux-ng
 Requires(preun): libxml2-utils sgml-common
 
 
@@ -31,26 +31,26 @@ Rarian is designed to be a replacement for scrollkeeper.  It is
 currently undergoing heavy development.  As of writing, rarian can be
 installed in place of scrollkeeper and everything will work okay.
 
-%package -n %libname
-Group:System/Libraries
-Summary: Rarian cataloging system library
+%package -n	%libname
+Group:		System/Libraries
+Summary:	Rarian cataloging system library
 
-%description -n %libname
+%description -n	%libname
 Rarian is a cataloging system for the installed documentation.
 
 Rarian is designed to be a replacement for scrollkeeper.  It is
 currently undergoing heavy development.  As of writing, rarian can be
 installed in place of scrollkeeper and everything will work okay.
 
-%package -n %libnamedev
-Group: Development/C
-Summary: Rarian cataloging system - development files
-Requires: %libname = %version
-Provides: %name-devel = %version-%release
-Provides: lib%name-devel = %version-%release
-Provides: scrollkeeper-devel = %version-%release
+%package -n	%libnamedev
+Group:		Development/C
+Summary:	Rarian cataloging system - development files
+Requires:	%libname = %version
+Provides:	%name-devel = %version-%release
+Provides:	lib%name-devel = %version-%release
+Provides:	scrollkeeper-devel = %version-%release
 
-%description -n %libnamedev
+%description -n	%libnamedev
 Rarian is a cataloging system for the installed documentation.
 
 Rarian is designed to be a replacement for scrollkeeper.  It is
