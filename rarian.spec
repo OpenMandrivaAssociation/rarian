@@ -6,7 +6,7 @@
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
 Version:	0.8.1
-Release:	%mkrel 6
+Release:	%mkrel 7
 Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1:	scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
@@ -71,19 +71,6 @@ mkdir -p %buildroot/var/lib/rarian
 touch %buildroot/var/lib/rarian/rarian-update-mtimes
 install -D -m 644 %SOURCE1 %buildroot%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 
-# automatic cache update on rpm installs/removals
-# (see http://wiki.mandriva.com/en/Rpm_filetriggers)
-install -d %buildroot%{_var}/lib/rpm/filetriggers
-cat > %buildroot%{_var}/lib/rpm/filetriggers/rarian.filter << EOF
-^./usr/share/omf/.*\.omf$
-EOF
-cat > %buildroot%{_var}/lib/rpm/filetriggers/rarian.script << EOF
-#!/bin/sh
-/usr/bin/scrollkeeper-update -q
-EOF
-chmod 755 %buildroot%{_var}/lib/rpm/filetriggers/rarian.script
-
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -113,6 +100,11 @@ fi
         "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" \
         "%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd" %xmlcatalog
 
+%triggerin -- %{_datadir}/omf/*.omf
+/usr/bin/scrollkeeper-update -q
+
+%triggerpostun -- %{_datadir}/omf/*.omf
+/usr/bin/scrollkeeper-update -q
 
 %files
 %defattr(-,root,root)
@@ -127,7 +119,6 @@ fi
 %{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 %dir /var/lib/rarian
 %ghost /var/lib/rarian/rarian-update-mtimes
-%{_var}/lib/rpm/filetriggers/rarian.*
 
 %files -n %libname
 %defattr(-,root,root)
