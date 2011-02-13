@@ -6,7 +6,7 @@
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
 Version:	0.8.1
-Release:	%mkrel 7
+Release:	%mkrel 8
 Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1:	scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
@@ -100,11 +100,11 @@ fi
         "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" \
         "%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd" %xmlcatalog
 
-%triggerin -- %{_datadir}/omf/*.omf
-/usr/bin/scrollkeeper-update -q
+%triggerin -- %{_datadir}/omf/*/*.omf
+%{_bindir}/scrollkeeper-update -q
 
-%triggerpostun -- %{_datadir}/omf/*.omf
-/usr/bin/scrollkeeper-update -q
+%triggerpostun -- %{_datadir}/omf/*/*.omf
+%{_bindir}/scrollkeeper-update -q
 
 %files
 %defattr(-,root,root)
