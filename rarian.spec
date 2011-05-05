@@ -6,7 +6,7 @@
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
 Version:	0.8.1
-Release:	%mkrel 9
+Release:	%mkrel 10
 Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1:	scrollkeeper-omf.dtd
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
