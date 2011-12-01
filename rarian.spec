@@ -65,14 +65,14 @@ installed in place of scrollkeeper and everything will work okay.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std localstatedir=%buildroot/var
 mkdir -p %buildroot/var/lib/rarian
 touch %buildroot/var/lib/rarian/rarian-update-mtimes
 install -D -m 644 %SOURCE1 %buildroot%{_datadir}/xml/scrollkeeper/dtds/scrollkeeper-omf.dtd
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
   if [ "$1" = "1" ]; then
