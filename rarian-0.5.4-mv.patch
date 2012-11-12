@@ -1,0 +1,11 @@
+--- rarian-0.5.4/util/rarian-sk-update.in~	2007-07-29 13:50:45.000000000 +0200
++++ rarian-0.5.4/util/rarian-sk-update.in	2007-07-31 15:58:46.000000000 +0200
+@@ -230,7 +230,7 @@ process_directory ()
+ 				print_verbose "Directory resonsible for $entry has been removed.  Deleting"
+ 				filenames=${filenames#$entry}
+ 				filenames=${filenames#;}
+-				mv $entry $tmpdir
++				mv ${output_dir}/$entry $tmpdir
+ 			done
+ 
+ 		fi

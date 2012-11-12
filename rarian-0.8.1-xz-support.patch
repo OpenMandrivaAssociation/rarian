@@ -1,0 +1,107 @@
+diff --git a/librarian/rarian-info.c b/librarian/rarian-info.c
+index aa247bf..3f54d12 100644
+--- a/librarian/rarian-info.c
++++ b/librarian/rarian-info.c
+@@ -277,6 +277,21 @@ process_check_file()
+     current_entry->base_filename = filename;
+     return TRUE;
+   }
++  sprintf (filename, "%s/%s.info.xz", current_entry->base_path,
++		  current_entry->name);
++  if (!stat(filename, &fileinfo)) {
++    current_entry->compression = INFO_ENCODING_XZ;
++    current_entry->base_filename = filename;
++    return TRUE;
++  }
++  sprintf (filename, "%s/%s.xz", current_entry->base_path,
++		  current_entry->name);
++  if (!stat(filename, &fileinfo)) {
++    current_entry->compression = INFO_ENCODING_XZ;
++    current_entry->base_filename = filename;
++    return TRUE;
++  }
++
+   sprintf (filename, "%s/%s.info", current_entry->base_path,
+ 	   current_entry->name);
+   if (!stat(filename, &fileinfo)) {
+@@ -381,6 +396,39 @@ process_check_file()
+     current_entry->base_filename = filename;
+     return TRUE;
+     }
++    sprintf (filename, "%s/%s/%s.info.xz", current_entry->base_path,
++		    current_entry->name, current_entry->name);
++    if (!stat(filename, &fileinfo)) {
++    /* Add to base path */
++    char *new_base = malloc (sizeof(char) * (strlen(current_entry->base_path) +
++					    (strlen(current_entry->name) *2) +
++					    2));
++    sprintf (new_base, "%s/%s", current_entry->base_path,
++		    current_entry->name);
++    free(current_entry->base_path);
++    current_entry->base_path = new_base;
++    
++    current_entry->compression = INFO_ENCODING_XZ;
++    current_entry->base_filename = filename;
++    return TRUE;
++    }
++        
++    sprintf (filename, "%s/%s/%s.xz", current_entry->base_path,
++		    current_entry->name, current_entry->name);
++    if (!stat(filename, &fileinfo)) {
++	    /* Add to base path */
++    char *new_base = malloc (sizeof(char) * (strlen(current_entry->base_path) +
++					    (strlen(current_entry->name) *2) +
++					    2));
++    sprintf (new_base, "%s/%s", current_entry->base_path,
++    current_entry->name);
++    free(current_entry->base_path);
++    current_entry->base_path = new_base;
++    
++    current_entry->compression = INFO_ENCODING_XZ;
++    current_entry->base_filename = filename;
++    return TRUE;
++    }
+ 
+   sprintf (filename, "%s/%s/%s.info", current_entry->base_path,
+ 	   current_entry->name, current_entry->name);
+diff --git a/librarian/rarian-info.h b/librarian/rarian-info.h
+index eb3e3b1..268b517 100644
+--- a/librarian/rarian-info.h
++++ b/librarian/rarian-info.h
+@@ -44,6 +44,7 @@ extern "C" {
+     INFO_ENCODING_GZIP,
+     INFO_ENCODING_BZIP,
+     INFO_ENCODING_LZMA,
++    INFO_ENCODING_XZ,
+     INFO_ENCODING_UNKNOWN,
+   } RrnInfoCompression;
+ 
+diff --git a/librarian/rarian-man.c b/librarian/rarian-man.c
+index 9ad9c1b..66606f5 100644
+--- a/librarian/rarian-man.c
++++ b/librarian/rarian-man.c
+@@ -239,7 +239,7 @@ get_name_for_file (char *filename, char **subsect)
+ 
+   /* We assume, like reasonable people, that man pages
+    * have one of the forms:
+-   * manname.sect.{gz,bz,bz2,lzma}
++   * manname.sect.{gz,bz,bz2,lzma,xz}
+    * manname.sect
+    * If it doesn't, things will probably break but we return
+    * our "best guess" (i.e. everything up to the suffix)
+@@ -250,9 +250,12 @@ get_name_for_file (char *filename, char **subsect)
+     if (!suffix) {
+       suffix = strrstr(filename, ".bz");
+     }
+-      if (!suffix) {
+-        suffix = strrstr(filename, ".lzma");
+-      }
++    if (!suffix) {
++	suffix = strrstr(filename, ".lzma");
++    }
++    if (!suffix) {
++	suffix = strrstr(filename, ".xz");
++    }    
+   }
+   if (suffix)
+     cut = rrn_strndup (filename, suffix-filename);
