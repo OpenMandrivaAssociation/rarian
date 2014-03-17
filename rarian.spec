@@ -1,7 +1,7 @@
 %define major 0
 %define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %{name}
-%define xmlcatalog      %{_sysconfdir}/xml/catalog
+%define devname %mklibname -d %{name}
+%define xmlcatalog %{_sysconfdir}/xml/catalog
 
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
@@ -16,9 +16,8 @@ Source2:	rarian.rpmlintrc
 # gw https://bugs.freedesktop.org/show_bug.cgi?id=11779
 Patch0:		rarian-0.5.4-mv.patch
 Patch1:		rarian-0.8.1-xz-support.patch
-
 Requires(post):	libxml2-utils sgml-common util-linux-ng
-Requires(preun): libxml2-utils sgml-common
+Requires(preun):	libxml2-utils sgml-common
 %rename		scrollkeeper
 
 %description
@@ -33,24 +32,16 @@ Group:		System/Libraries
 Summary:	Rarian cataloging system library
 
 %description -n	%{libname}
-Rarian is a cataloging system for the installed documentation.
+This package contains the shared library for %{name}.
 
-Rarian is designed to be a replacement for scrollkeeper.  It is
-currently undergoing heavy development.  As of writing, rarian can be
-installed in place of scrollkeeper and everything will work okay.
-
-%package -n	%{develname}
+%package -n	%{devname}
 Group:		Development/C
 Summary:	Rarian cataloging system - development files
-Requires:	%{libname} = %version
-Provides:	%{name}-devel = %version-%release
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n	%{develname}
-Rarian is a cataloging system for the installed documentation.
-
-Rarian is designed to be a replacement for scrollkeeper.  It is
-currently undergoing heavy development.  As of writing, rarian can be
-installed in place of scrollkeeper and everything will work okay.
+%description -n	%{devname}
+This package contains the development files for %{name}.
 
 %prep
 %setup -q
@@ -120,8 +111,9 @@ fi
 %files -n %{libname}
 %{_libdir}/librarian.so.%{major}*
 
-%files -n %{develname}
+%files -n %{devname}
 %doc ChangeLog TODO
 %{_libdir}/librarian.so
 %{_includedir}/rarian
 %{_libdir}/pkgconfig/rarian.pc
+
