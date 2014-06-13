@@ -6,7 +6,7 @@
 Summary:	Cataloging system for documentation on open systems
 Name:		rarian
 Version:	0.8.1
-Release:	15
+Release:	16
 License:	GPLv2+
 Group:		Publishing
 Url:		http://rarian.freedesktop.org/
