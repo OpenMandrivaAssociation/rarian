@@ -9,7 +9,7 @@ Version:	0.8.1
 Release:	23
 License:	GPLv2+
 Group:		Publishing
-Url:		http://rarian.freedesktop.org/
+Url:		https://rarian.freedesktop.org/
 Source0:	http://rarian.freedesktop.org/Releases/%{name}-%{version}.tar.bz2
 Source1:	scrollkeeper-omf.dtd
 Source2:	rarian.rpmlintrc
